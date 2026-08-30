@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="quiz-container">
+
+        <div class="quiz-header">
+
+            <span>
+                Question {{ question_number }}
+                / {{ total_questions }}
+            </span>
+
+            <span id="timer">
+                ⏱️ 15
+            </span>
+
+        </div>
+
+
+        <!-- Progress Bar -->
+
+        <div class="progress-container">
+
+            <div class="progress-bar"
+                 style="width: {{ progress }}%;">
+            </div>
+
+        </div>
+
+
+        <h2>
+            {{ question.question }}
+        </h2>
+
+
+        <form method="POST"
+              id="quiz-form">
+
+            <div class="options">
+
+                {% for option in question.options %}
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="answer"
+                        value="{{ option }}"
+                        required
+                    >
+
+                    <span>
+                        {{ option }}
+                    </span>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+
+            <button type="submit"
+                    class="next-btn">
+
+                Next Question →
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
